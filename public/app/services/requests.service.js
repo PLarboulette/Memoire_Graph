@@ -9,22 +9,13 @@ class RequestsService {
         this.$resource = $resource; 
     }
 
-    getNodesFromA () {
-        return this.$resource('/api/etcd/requests/Nenya').query();
-    }
-
-    createNode (node) {
-        this.$resource('/api/requests').save(node);
-    }
 
     getRequests() {
-        console.log('requests service');
-        // return this.$resource("/api/requests").query(); 
-
-       return new Promise(function(resolve, reject) {
+        return this.$resource("/api/requests").query();
+      /* return new Promise(function(resolve, reject) {
            resolve('ok');
 
-       });
+       });*/
 }}
 
 

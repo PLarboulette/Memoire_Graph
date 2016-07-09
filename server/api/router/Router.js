@@ -35,7 +35,11 @@ module.exports = class Router {
 
         // Return all the Services for a given application
         this.router.get("/requests", (req, res) => {
-            console.log("ok requête");
+            var tab = [
+                { user : 'ok'}
+            ];
+
+            res.status(200).json(tab);
 
            /* this.nodesController.getNodesFromA(req, res, (err, nodes) => {
                 if (err) res.status(501).json(err.message);

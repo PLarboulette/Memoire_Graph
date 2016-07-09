@@ -4,22 +4,14 @@
 
 class RequestsController  {
 
-    constructor () {
-        console.log('hello world');
-        // this.nodesService = NodesService;
-        // this.getNodes();
+    constructor ($state, RequestsService) {
+        this.$scope.result = [] ;
+        RequestsService.getRequests().$promise.then((requests) => {
+            this.result = requests;
+        });
     }
-
-    a () {
-        console.log(' ok a');
-    }
-
-    b () {
-        console.log(' ok b');
-    }
-
 }
 
+RequestsController.$inject = ['$state', 'RequestsService'];
+
 export default RequestsController;
-
-

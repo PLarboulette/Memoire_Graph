@@ -16,6 +16,7 @@ const bodyParser = require('body-parser');
 const configServer = require('./utils/config/server.json');
 
 const Router = require('./api/router/Router');
+const configDatabase = require('./utils/config/database.json');
 
 class server {
 
@@ -30,6 +31,10 @@ class server {
         appExpress.use(bodyParser.json());
         appExpress.use(bodyParser.urlencoded({ extended: true }));
         appExpress.use(express.static(__dirname + '/../public'));
+
+        var db = {info : 'ok'};
+
+        appExpress.use('/api', new Router(db).getRouter());
 
     }
 
