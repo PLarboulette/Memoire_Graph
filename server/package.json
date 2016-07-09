@@ -1,0 +1,21 @@
+{
+  "name": "memoire_graph_server",
+  "version": "0.0.1",
+  "description": "Tracing request graph / server",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "MySQL",
+    "Microservices"
+  ],
+  "author": "Pierre Larboulette",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "^4.13.4",
+    "express-json": "^1.0.0",
+    "express-session": "^1.13.0"
+  }
+}
