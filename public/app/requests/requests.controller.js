@@ -55,8 +55,8 @@ class RequestsController  {
     removeEdge (source, target, label) {
 
         for (var k = 0 ; k < this.s.graph.edges().length; k++) {
-            if (this.s.graph.edges()[k].id.indexOf(source) != -1) {
-                 this.s.graph.dropEdge(source);
+            if (this.s.graph.edges()[k].id.indexOf(source+target) != -1) {
+                 this.s.graph.dropEdge(source+target);
 
             }
         }
@@ -65,11 +65,9 @@ class RequestsController  {
     }
 
     addEdge (source, target, label) {
-        console.log(label);
-        
 
         this.s.graph.addEdge({
-            id: source,
+            id: source+target,
             source: source,
             target: target,
             label : label
