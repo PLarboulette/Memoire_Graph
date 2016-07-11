@@ -6,12 +6,14 @@
 
 // Imports
 const RouterExpress = require('express').Router();
+const RequestsController = require('./../controllers/RequestsController');
 
 module.exports = class Router {
 
-    constructor (database) {
+    constructor (connection) {
         this.router = RouterExpress;
-        this.database = database;
+        this.connection = connection;
+        this.requestsController = new RequestsController(this.connection);
         this.init();
         this.requestsRoutes();
     }
@@ -30,21 +32,14 @@ module.exports = class Router {
         });
     }
 
-
     requestsRoutes () {
 
-        // Return all the Services for a given application
+        // Return all the requests
         this.router.get("/requests", (req, res) => {
-            var tab = [
-                { user : 'ok'}
-            ];
-
-            res.status(200).json(tab);
-
-           /* this.nodesController.getNodesFromA(req, res, (err, nodes) => {
+            this.requestsController.getRequests(req, res, (err, nodes) => {
                 if (err) res.status(501).json(err.message);
                 res.status(200).json(nodes);
-            });*/
+            });
         });
     }
 

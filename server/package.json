@@ -16,6 +16,7 @@
     "body-parser": "latest",
     "express": "^4.13.4",
     "express-json": "^1.0.0",
-    "express-session": "^1.13.0"
+    "express-session": "^1.13.0",
+    "mysql": "^2.11.1"
   }
 }

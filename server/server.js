@@ -12,17 +12,18 @@ const http = require('http').Server(appExpress);
 const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const mysql = require('mysql');
 
 const configServer = require('./utils/config/server.json');
 
 const Router = require('./api/router/Router');
-const configDatabase = require('./utils/config/database.json');
 
 class server {
 
     constructor () {
         this.init();
         this.launch();
+        this.initConnections();
     }
 
     init () {
@@ -31,17 +32,25 @@ class server {
         appExpress.use(bodyParser.json());
         appExpress.use(bodyParser.urlencoded({ extended: true }));
         appExpress.use(express.static(__dirname + '/../public'));
-
-        var db = {info : 'ok'};
-
-        appExpress.use('/api', new Router(db).getRouter());
-
+        
     }
 
     launch () {
         http.listen(appExpress.get('port'), () => {
             console.log("INFO = [Listening on port "+appExpress.get('port')+"]");
         });
+    }
+
+    initConnections () {
+
+        const connection = mysql.createConnection({
+            host     : 'localhost',
+            user     : 'root',
+            password : 'root',
+            database : 'microservices'
+        });
+
+        appExpress.use('/api', new Router(connection).getRouter());
     }
 }
 
